@@ -3,6 +3,7 @@ package com.seq;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtMethod;
+import javassist.LoaderClassPath;
 
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
@@ -33,6 +34,7 @@ public class SeqTransformer implements ClassFileTransformer {
         ClassPool pool = ClassPool.getDefault();
         try {
             System.err.println(className);
+            pool.appendClassPath(new LoaderClassPath(Thread.currentThread().getContextClassLoader()));
             CtClass ctClass = pool.get(className);
             if (ctClass.isInterface() || ctClass.isAnnotation()) {
                 return classfileBuffer;
