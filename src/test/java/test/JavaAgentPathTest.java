@@ -9,15 +9,16 @@ import java.text.MessageFormat;
 public class JavaAgentPathTest {
 
     public static void main(String[] args) {
-        mybatis();
+        make();
+//        mybatis();
     }
 
-    public static void risk() {
+    public static void make() {
         String cmd = "-javaagent:%s=scanPackages=%s&mainClass=%s&seqLogFilePath=%s";
         String agentPath = "/Users/yangyu/workspace/yyself/seq-agent/target/seq-agent.jar";
-        String scanPackages = "com.xxxxx.risk";
-        String mainClass = "RiskControlApplication";
-        String logPath = "/Users/yangyu/Desktop/seq.text";
+        String scanPackages = "com.agent.demo";
+        String mainClass = "AgentDemoApplication";
+        String logPath = "/Users/yangyu/Desktop/seq.txt";
         System.err.println(String.format(cmd, agentPath, scanPackages, mainClass, logPath));
     }
 
